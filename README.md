@@ -4,28 +4,17 @@ Simple bot which forward messages between you and users. User sends message to b
 
 ## Installation
 
+Bot uses webhooks, not long pooling. You can run it on local machine, but you need replace webhook setting with long pooling function from pyTelegramBotApi lib.
+
 For correct work you need to create an environment variables such as:
 
 `API_TOKEN` = `'12312342:GDBVNDLFVJDKLKMBE'` - API Token (@BotFather to create new bot);\
 `CALLBACK_CHAT` = `'12345678'` - Get your chat ID you can in @userinfobot;\
 `APP_URL` = `'https://<app_name>.herokuapp.com/'` - for Heroku (any value on others);
 
-Manual Install:
-
-```bash
-pip install -r requirements.txt
-```
-
 ## Usage on Heroku
 
 There is a lot of information about how to deploy your bot to heroku in the Internet. Use Google or something. Actually this project is a fully ready to deploy, only one thing you need for correct work is to set up your local variables.
-
-## Usage on local machines
-
-
-```python
-python3 bot.py
-```
 
 ## Commands
 
