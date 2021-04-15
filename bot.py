@@ -1,5 +1,4 @@
 import logging
-import datetime
 from os import getenv
 from telegram import Update, Bot
 from telegram.ext import (
@@ -33,8 +32,9 @@ def redirect_message(update: Update, context: CallbackContext) -> None:
     user = update.effective_user
 
     message_body = f"""
-        New message / {datetime_string}
-        From: {user.username} / {user.id}
+        NEW MESSAGE:
+        Date: {datetime_string}
+        From: {user.mention_markdown_v2} / {user.id}
         Text: {update.message.text}
     """
 
