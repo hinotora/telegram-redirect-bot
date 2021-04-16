@@ -18,7 +18,8 @@ logger = logging.getLogger(__name__)
 def start(update: Update, _: CallbackContext) -> None:
     user = update.effective_user
     logger.info(f'{user.name} [{user.id}] typed: {update.message.text}')
-    update.message.reply_text(f'Hello, {user.first_name}! Write something to me and I\'ll redirect your message :)')
+    update.message.reply_text(f'Hello, {user.first_name}! \n Write something and I\'ll redirect your message :) \
+                                Type /help for information about bot.')
 
 def help_msg(update: Update, _: CallbackContext) -> None:
     message = f"""
@@ -32,9 +33,9 @@ def help_msg(update: Update, _: CallbackContext) -> None:
         
         Available commands:
         /start - Start bot
-        /help - Get help
+        /help - Get this message
         
-        Source: https://github.com/hinotora/telegram-echo-bot
+        Source: https://github.com/hinotora/telegram-redirect-bot
     """
 
     update.message.reply_text(message)
@@ -52,8 +53,9 @@ def redirect_message(update: Update, context: CallbackContext) -> None:
     message_body = f"""
         NEW MESSAGE:
         Date: {datetime_string}
-        From: @{user.username} / {user.id}
-        Text: {update.message.text}
+        From: @{user.username}
+        ID: {user.id}
+        Message: {update.message.text}
     """
 
     context.bot.send_message(ADMIN_CHAT, message_body)
@@ -62,14 +64,14 @@ def send_reply(update: Update, context: CallbackContext) -> None:
     user = update.effective_user
 
     if user.id != int(ADMIN_CHAT):
-        logger.info(f'{user.name} [{user.id}] unauthorised: {update.message.text}')
-        context.bot.send_message(user.id, "You are not authorized to do that.")
+        logger.info(f'{user.name} [{user.id}] unauthorised to: {update.message.text}')
+        context.bot.send_message(user.id, "You are not authorized to do that. This incident will be reported.")
         return
 
     reply_to = context.args[0]
     message = ' '.join(context.args[1:])
 
-    logger.info(f'Admin started reply to {reply_to}: {message}')
+    logger.info(f'Started reply to {reply_to}: {message}')
 
     context.bot.send_message(reply_to, message)
 
