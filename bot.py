@@ -7,6 +7,7 @@ from telegram.ext import Updater, CommandHandler,   MessageHandler,  Filters,  C
 ENV = getenv('ENV', 'local')
 TOKEN = getenv('API_TOKEN')
 APP_URL = getenv('APP_URL')
+PORT = getenv('PORT', 5000)
 ADMIN_CHAT = getenv('CALLBACK_CHAT')
 
 # Enable logging
@@ -96,7 +97,7 @@ if __name__ == '__main__':
         updater.idle()
     elif ENV == 'production':
         logger.info('=== PRODUCTION ENVIRONMENT DETECTED, SETTING UP WEBHOOKS ===')
-        updater.start_webhook(listen="0.0.0.0", port=80, url_path='webhook', webhook_url=APP_URL + 'webhook')
+        updater.start_webhook(listen="0.0.0.0", port=int(PORT), url_path='webhook', webhook_url=APP_URL + 'webhook')
         updater.idle()
     else:
         logger.info('=== UNKNOWN ENVIRONMENT, END OF EXECUTION ===')
