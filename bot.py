@@ -1,13 +1,16 @@
 import logging
+from dotenv import load_dotenv
 from os import getenv
 from telegram import Update
 from telegram.ext import Updater, CommandHandler,   MessageHandler,  Filters,  CallbackContext
 
 # Env variables
+load_dotenv()
+
 ENV = getenv('ENV', 'local')
 TOKEN = getenv('API_TOKEN')
 APP_URL = getenv('APP_URL')
-PORT = getenv('PORT', 5000)
+PORT = getenv('PORT', 443)
 ADMIN_CHAT = getenv('CALLBACK_CHAT')
 
 # Enable logging

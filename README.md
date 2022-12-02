@@ -9,19 +9,17 @@ Bot uses webhooks, not long pooling. You can run it on a local machine, but you 
 For correct work you need to create an environment variables such as:
 
 `ENV` = `local` or `production` (default is `local`) \
-`PORT` = Port for webhook setup (default is `5000`)
+`PORT` = Port for webhook setup (default is `443`)
 
 If env set to local then bot will use long pooling, if env set in production then bot will set webhook into telegram servers.
 
 `API_TOKEN` = `'12312342:GDBVNDLFVJDKLKMBE'` - API Token (@BotFather to create a new bot);\
 `CALLBACK_CHAT` = `'12345678'` - Get your chat ID you can in @userinfobot;\
-`APP_URL` = `'https://<app_name>.herokuapp.com/'` - for Heroku (any value on others);
+`APP_URL` = `'https://domain.com/'` - for Heroku (any value on others);
 
-## Usage on Heroku
+## Deploy
 
-There is a lot of information about how to deploy your bot to heroku in the Internet. Use Google or something. Actually this project is a fully ready to deploy, only one thing you need for correct work is to set up your local variables.
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hinotora/telegram-echo-bot/blob/master)
+Use `docker-compose` for easy deployment on VPS/VDS/Dedicated Server
 
 ## Commands
 
@@ -33,5 +31,3 @@ For admins:
 `/reply <chat_id> <message>` - chat_id will be displayed in an incoming message.\
 When you typed this command you can type response and send it, bot will send in to user.
 
-## Contributing
-Forks, Issues, Pull requests are welcome.
